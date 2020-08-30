@@ -7,7 +7,10 @@ import CurrentInfo from '../WeatherInfo/currentInfo'
 function Current (props) {
 	return (
 		<div className = 'Current'>
-		<Country country = {props.country}/>
+        <Country country = {props.country}
+                 handleCountryInput = {props.handleCountryInput}
+                 
+        />
         <City city = {props.city}
               handleCityInput = {props.handleCityInput}
         />

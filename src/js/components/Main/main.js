@@ -16,12 +16,37 @@ class Main extends Component {
 			otherCities: []
 		};
 		this.handleCityInput = this.handleCityInput.bind(this);
+		this.handleCountryInput = this.handleCountryInput.bind(this);
 		
+		
+	}
+
+	passFunction(){
+		console.log("function pass success");
 	}
 
     handleCityInput(inputCity){
 		const checkedCity = this.checkCityInput(inputCity);
 		return this.updateCity(checkedCity);    
+	}
+
+	handleCountryInput(inputCountry){
+		const updateCountry = this.checkNationInput(inputCountry);
+		console.log("check country pass " + inputCountry);
+		if(updateCountry){
+			this.setState({
+				country: updateCountry
+			});
+		}	
+		console.log("test country input  " + this.state.country);
+	}
+
+	checkNationInput(inputCountry){
+		const codeLength = 2;
+        if(inputCountry.length === codeLength){
+			return inputCountry;
+		}
+		return false;	
 	}
 
 	checkCityInput(inputCity){
@@ -47,6 +72,7 @@ class Main extends Component {
 		});
 
 	}
+	
 
 
     async initialRequest () {
@@ -88,9 +114,11 @@ class Main extends Component {
 				:
 					<div>
 						<Current  city = {data.city}
-						          country = {data.country}
+						          country = {this.state.country}
 								  currentInfo = {data.currentInfo}	
-								  handleCityInput = {this.handleCityInput}			  
+								  handleCityInput = {this.handleCityInput}
+								  handleCountryInput = {this.handleCountryInput}	
+								  passFunction = {this.passFunction}		  
 					 />
                     <Forecast/> 
 					</div>

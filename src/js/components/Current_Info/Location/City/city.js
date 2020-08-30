@@ -22,7 +22,6 @@ class City extends Component{
 
     handleChange(e) {
         this.updateDisplay(e.target.value);
-        
     }
 
     updateDisplay(inputValue) {
@@ -47,8 +46,10 @@ class City extends Component{
 		return (
 			<div className = 'City'>
 				<p>{this.props.city}</p>
-                <form className='City__form' onSubmit={this.handleSubmit}>
-					<input  className='City__form__input'
+                <form       className='City__form' 
+                            onSubmit={this.handleSubmit}>
+
+				    <input  className='City__form__input'
 							value={this.state.cityValue}
 							onChange={this.handleChange}
 							onFocus={this.handleFocus}

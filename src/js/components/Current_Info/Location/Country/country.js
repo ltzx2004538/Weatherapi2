@@ -1,21 +1,84 @@
 import React from 'react';
 import {Component} from 'react';
+import './country.scss';
 
-class Country extends Component{
+class Country extends Component {
     constructor(props) {
-		super(props);
-		this.defaultValue = 'Which city?';       	
+        super(props);
+        this.defaultValue = 'Change country?';
+        this.state = {
+            countryValue : this.defaultValue,
+            hideInput : true
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.toggleInput = this.toggleInput.bind(this);
+    }
+
+    toggleInput() {
+        this.setState({
+            hideInput : !this.state.hideInput,
+            countryValue: this.defaultValue
+        });
+    }
+
+    updateDisplay(inputValue) { 
+		this.setState({
+			countryValue: inputValue
+        });
+        
     }
     
-    render() {
-		return (
-			<div className = 'Country'>
-				<p>{this.props.country}</p>				
-			</div>
-		);
+    handleChange(e) {
+        this.updateDisplay(e.target.value);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log("current Nation " + this.state.countryValue);
+        this.props.handleCountryInput(this.state.countryValue);
+        this.toggleInput();
+    }
+
+    handleFocus(e) {
+		if (this.state.countryValue === this.defaultValue) {
+			this.updateDisplay('');
+		}	
 	}
 
+	handleBlur(e) {
+		if (this.state.countryValue === '') {
+			this.updateDisplay(this.defaultValue);
+		}	
+	}
 
+    render() {
+        const {countryValue, hideInput} = this.state;
+        return (
+            <div className = 'Country'>
+                <div    className = 'Country__name'
+                        onClick = {this.toggleInput}
+                >
+                    {this.props.country}
+                </div>
+                {hideInput?
+                    ''
+                :
+                    <form   className = 'Country__form'
+                            onSubmit = {this.handleSubmit}
+                    >
+                        <input  value = {countryValue}
+                                onChange = {this.handleChange}
+                                onBlur = {this.handleBlur}
+                                onFocus = {this.handleFocus}
+                        />
+                    </form> 
+                }   
+            </div>
+        );
+    }
 }
 
 export default Country;
