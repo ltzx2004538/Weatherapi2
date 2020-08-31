@@ -28,7 +28,8 @@ function getWeather(country,city){
     .then((responseArray) =>{
         const today = responseArray[0];
         const forecast = responseArray[1];
-        const currentInfo = new Weather(today.data);  
+        const currentInfo = new Weather(today.data);
+        console.log(today.data.main.temp);
         const city = forecast.data.city.name;
         const country = forecast.data.city.country;
         const data = {currentInfo,city,country};

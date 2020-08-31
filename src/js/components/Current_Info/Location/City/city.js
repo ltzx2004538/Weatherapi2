@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import './city.scss';
 
 class City extends Component{
     constructor(props) {

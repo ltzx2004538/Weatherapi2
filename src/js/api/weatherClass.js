@@ -1,6 +1,6 @@
 class Weather {
     constructor(data) {
-        this.temperature = data.main.temp;
+        this.temperature = Math.round(data.main.temp);
         this.humidity = data.main.humidity;
         this.wind = data.wind.speed;
         this.weather = data.weather[0].main;

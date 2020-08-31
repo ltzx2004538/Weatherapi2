@@ -1,0 +1,19 @@
+.Current{
+	position: relative;
+	display: flex;
+	padding: 64px 0;
+	background-image: url(../../../img/background.jpg);
+	background-size: cover;
+	color: white;
+	border-top-left-radius: 32px;
+	border-top-right-radius: 32px;
+    text-align: center;
+    border:solid 2px; 
+}
+
+.division{
+	width: 3px;
+	background-color: rgba(255, 255, 255, 0.7);
+	margin: 0 30px;
+}
+
